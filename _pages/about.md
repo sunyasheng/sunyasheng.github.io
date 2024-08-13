@@ -171,7 +171,7 @@ IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) 2021.
 # 📖 Educations
 - *2020.09 - 2024.12*, Tokyo Institute of Technology, Ph.D student of Computer Science, School of Computing. 
 - *2017.09 - 2020.06*, Shanghai Jiao Tong University, Master of Engineering.
-- *2013.09 - 2017.06*, Nanjing University of Aeronautics and Astronautics, Bachlor of Engineering.
+- *2013.09 - 2017.06*, Nanjing University of Aeronautics and Astronautics, Bachelor of Engineering.
 
 <!-- # 💬 Invited Talks
 - *2021.06*, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
@@ -183,6 +183,6 @@ IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) 2021.
 
 
 
-# 💻 Acedemic Activities
+# 💻 Academic Activities
 - Journal Reviewer of Transactions on Multimedia, TPAMI, etc
 - Conference Reviewer of CVPR, ICCV, ECCV, NeurIPS, etc.

@@ -18,7 +18,7 @@ redirect_from:
 # 👤  About Me
 <span class='anchor' id='about-me'></span>
 
-I'm a fourth-year Ph.D. student at [Tokyo Institute of Technology (TIT)](https://www.titech.ac.jp/english?), advised by Prof. [Hideki Koike](https://scholar.google.com/citations?user=Ih8cJXQAAAAJ&hl=en). Before joining TIT, I was a computer vision researcher at [Sensetime](https://www.sensetime.com/). I received my Master degree at [Shanghai Jiaotong University (SJTU)](https://en.sjtu.edu.cn/) in 2020.
+I am about to join [King Abdullah University of Science and Technology University (KAUST)](https://www.kaust.edu.sa) as a Postdoctoral Researcher Under [Prof. Jürgen Schmidhuber](https://people.idsia.ch/~juergen/). I received my Ph.D. degree from [Tokyo Institute of Technology (TIT)](https://www.titech.ac.jp/english?), advised by Prof. [Hideki Koike](https://scholar.google.com/citations?user=Ih8cJXQAAAAJ&hl=en). Before joining TIT, I was a computer vision researcher at [Sensetime](https://www.sensetime.com/). I received my Master degree at [Shanghai Jiaotong University (SJTU)](https://en.sjtu.edu.cn/) in 2020.
  <!-- and Bachelor degree at Nanjing University of Aeronautics and Astronautics (NUAA). -->
 
 
@@ -185,4 +185,5 @@ IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) 2021.
 
 # 💻 Academic Activities
 - Journal Reviewer of Transactions on Multimedia, TPAMI, etc
-- Conference Reviewer of CVPR, ICCV, ECCV, NeurIPS, etc.
+- Conference Reviewer of CVPR, ICCV, ECCV, NeurIPS, ICLR, ICML, etc
+- Program Committee of AAAI, etc

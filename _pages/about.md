@@ -22,7 +22,8 @@ I am about to join [King Abdullah University of Science and Technology Universit
  <!-- and Bachelor degree at Nanjing University of Aeronautics and Astronautics (NUAA). -->
 
 
-My research interests include image and video generative models and the creation of virtual humans. <strong>I am currently seeking a post-doctoral position. If you know of any available opportunities, please contact me via email.</strong>
+My research interests include image and video generative models and the creation of virtual humans. 
+<!-- <strong>I am currently seeking a post-doctoral position. If you know of any available opportunities, please contact me via email.</strong> -->
 
 <!-- I have published more than 100 papers at the top international AI conferences with total <a href='https://scholar.google.com/citations?user=Vrq1yOEAAAAJ&hl=en'>google scholar citations <strong><span id='total_cit'>260000+</span></strong></a> (You can also use google scholar badge <a href='https://scholar.google.com/citations?user=DhtAFkwAAAAJ'><img src="https://img.shields.io/endpoint?url={{ url | url_encode }}&logo=Google%20Scholar&labelColor=f6f6f6&color=9cf&style=flat&label=citations"></a>). -->
 

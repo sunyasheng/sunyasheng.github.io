@@ -18,11 +18,12 @@ redirect_from:
 # 👤  About Me
 <span class='anchor' id='about-me'></span>
 
-I am about to join [King Abdullah University of Science and Technology University (KAUST)](https://www.kaust.edu.sa) as a Postdoctoral Researcher Under [Prof. Jürgen Schmidhuber](https://people.idsia.ch/~juergen/). I received my Ph.D. degree from [Tokyo Institute of Technology (TIT)](https://www.titech.ac.jp/english?), advised by Prof. [Hideki Koike](https://scholar.google.com/citations?user=Ih8cJXQAAAAJ&hl=en). Before joining TIT, I was a computer vision researcher at [Sensetime](https://www.sensetime.com/). I received my Master degree at [Shanghai Jiaotong University (SJTU)](https://en.sjtu.edu.cn/) in 2020.
- <!-- and Bachelor degree at Nanjing University of Aeronautics and Astronautics (NUAA). -->
+I am about to join [King Abdullah University of Science and Technology University (KAUST)](https://www.kaust.edu.sa) as a Postdoctoral Researcher Under [Prof. Jürgen Schmidhuber](https://people.idsia.ch/~juergen/). I earned my Ph.D. from [Tokyo Institute of Technology (TIT)](https://www.titech.ac.jp/english?), advised by Prof. [Hideki Koike](https://scholar.google.com/citations?user=Ih8cJXQAAAAJ&hl=en). Before joining TIT, I worked as a computer vision researcher at [Sensetime](https://www.sensetime.com/). I received my Master degree at [Shanghai Jiaotong University (SJTU)](https://en.sjtu.edu.cn/) in 2020.
 
 
-My research interests include image and video generative models and the creation of virtual humans. 
+My research focuses on image and video generative models, as well as the creation of virtual humans. I’m always interested in novel applications and open to collaboration—feel free to reach out!
+
+<!-- and Bachelor degree at Nanjing University of Aeronautics and Astronautics (NUAA). -->
 <!-- <strong>I am currently seeking a post-doctoral position. If you know of any available opportunities, please contact me via email.</strong> -->
 
 <!-- I have published more than 100 papers at the top international AI conferences with total <a href='https://scholar.google.com/citations?user=Vrq1yOEAAAAJ&hl=en'>google scholar citations <strong><span id='total_cit'>260000+</span></strong></a> (You can also use google scholar badge <a href='https://scholar.google.com/citations?user=DhtAFkwAAAAJ'><img src="https://img.shields.io/endpoint?url={{ url | url_encode }}&logo=Google%20Scholar&labelColor=f6f6f6&color=9cf&style=flat&label=citations"></a>). -->

@@ -43,6 +43,10 @@
   .figure-card { background:#fff; border:1px solid #ebedec; border-radius:12px; padding:1.25rem; }
   .figure-card img { border-radius:6px; }
   footer.footer { background:#fafbfb; }
+  .video-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:1.5rem; }
+  .video-card { background:#fff; border:1px solid #ebedec; border-radius:12px; padding:1rem; }
+  .video-card video { width:100%; border-radius:8px; display:block; background:#f2f4f3; }
+  .video-caption { color:var(--muted); font-size:.88rem; line-height:1.6; margin-top:.75rem; text-align:left; }
 </style>
 </head>
 <body>
@@ -179,6 +183,64 @@
         with cooperative inter-ligand stacking energy, and the model is refined via online
         reinforcement learning.
       </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== MD VIDEOS ===================== -->
+<section class="section pt-0" id="md">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <h2 class="title is-3 section-title">Molecular Dynamics</h2>
+        <p class="content has-text-centered" style="color:var(--muted); max-width:760px; margin:0 auto 2rem;">
+          All-atom MD simulations of CORAL-discovered ligands bound to amyloid fibrils.
+          Each ligand is placed as a periodic stack along the fibril axis and simulated in
+          explicit solvent, testing whether the predicted cooperative stacking geometry
+          holds up under thermal motion.
+        </p>
+      </div>
+    </div>
+
+    <div class="video-grid">
+
+      <div class="video-card">
+        <video controls preload="none" playsinline loop
+               poster="./CORAL/videos/md_9UFF_c29.jpg">
+          <source src="./CORAL/videos/md_9UFF_c29.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <p class="video-caption">
+          <b>&alpha;-synuclein fibril (9UFF), site c29.</b> 100&nbsp;ns all-atom MD of a
+          CORAL-predicted ligand stack intercalated in the cross-&beta; groove.
+        </p>
+      </div>
+
+      <div class="video-card">
+        <video controls preload="none" playsinline loop
+               poster="./CORAL/videos/md_9UFF_c13.jpg">
+          <source src="./CORAL/videos/md_9UFF_c13.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <p class="video-caption">
+          <b>&alpha;-synuclein fibril (9UFF), site c13.</b> 100&nbsp;ns all-atom MD at a
+          second groove site, showing the ligand copies maintaining periodic registry.
+        </p>
+      </div>
+
+      <div class="video-card">
+        <video controls preload="none" playsinline loop
+               poster="./CORAL/videos/md_7UPG_sys10.jpg">
+          <source src="./CORAL/videos/md_7UPG_sys10.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <p class="video-caption">
+          <b>Tau fibril (7UPG), system 10.</b> A dimethoxy-triphenylmethane scaffold
+          (E<sub>stack</sub> = &minus;8.60&nbsp;kcal/mol) remaining stably stacked over the
+          course of the trajectory.
+        </p>
+      </div>
+
     </div>
   </div>
 </section>

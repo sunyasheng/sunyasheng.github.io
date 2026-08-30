@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DreamConnect: Connecting Dreams with Visual Brainstorming Instruction</title>
+
+<meta name="description" content="DreamConnect employs a dual-stream diffusion framework to manipulate visually stimulated brain signals with natural language, enabling concept manipulation through direct fMRI signal modification.">
+<meta name="keywords" content="brain-computer interface; fMRI; diffusion model; brain decoding; visual brainstorming; dream manipulation">
+<meta name="robots" content="index,follow">
+
+<!-- Open Graph / Twitter -->
+<meta property="og:title" content="DreamConnect: Connecting Dreams with Visual Brainstorming Instruction">
+<meta property="og:description" content="A dual-stream diffusion framework to manipulate visually stimulated brain signals with natural language instructions.">
+<meta property="og:image" content="https://sunyasheng.github.io/projects/DreamConnect/teaser.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="DreamConnect: Connecting Dreams with Visual Brainstorming Instruction">
+<meta name="twitter:image" content="https://sunyasheng.github.io/projects/DreamConnect/teaser.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+<style>
+  :root { --ink:#363636; --muted:#5f6368; --accent:#5c3d8f; }
+  body { font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; color:var(--ink); }
+  .publication-title { font-weight:800; letter-spacing:-.02em; line-height:1.15; }
+  .publication-authors { font-weight:600; }
+  .publication-authors a { color:var(--accent); }
+  .publication-authors a:hover { text-decoration:underline; }
+  .affiliations { color:var(--muted); font-size:.95rem; line-height:1.7; }
+  .notes { color:var(--muted); font-size:.85rem; }
+  .hero.is-light { background:linear-gradient(180deg,#f7f7fb 0%,#ffffff 100%); }
+  .link-block .button { border-radius:999px; font-weight:600; }
+  .figure-caption { color:var(--muted); font-size:.92rem; line-height:1.65; margin-top:.9rem; text-align:left; }
+  .section-title { font-weight:700; letter-spacing:-.01em; }
+  .content p { line-height:1.8; text-align:justify; }
+  pre.bibtex { background:#f5f5f5; border-radius:8px; padding:1.1rem 1.25rem; font-size:.86rem; overflow-x:auto; }
+  .figure-card { background:#fff; border:1px solid #ebeced; border-radius:12px; padding:1.25rem; }
+  .figure-card img { border-radius:6px; }
+  footer.footer { background:#fafbfb; }
+</style>
+</head>
+<body>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero is-light">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+
+          <h1 class="title is-2 publication-title">
+            Connecting Dreams with Visual<br>Brainstorming Instruction
+          </h1>
+
+          <div class="is-size-5 publication-authors mt-5">
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=Vrq1yOEAAAAJ" target="_blank">Yasheng Sun</a><sup>1</sup>,
+            </span>
+            <span class="author-block">Bohan Li<sup>2</sup>,</span>
+            <span class="author-block">
+              <a href="https://mingchen-zhuge.github.io/" target="_blank">Mingchen Zhuge</a><sup>3</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://dengpingfan.github.io/" target="_blank">Deng-Ping Fan</a><sup>4</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://salman-h-khan.github.io/" target="_blank">Salman Khan</a><sup>5</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://sites.google.com/view/faaborez" target="_blank">Fahad Shahbaz Khan</a><sup>5</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://www.vogue.cs.titech.ac.jp/koike" target="_blank">Hideki Koike</a><sup>1</sup>
+            </span>
+          </div>
+
+          <div class="affiliations mt-4">
+            <sup>1</sup>Tokyo Institute of Technology&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+            <sup>2</sup>Shanghai Jiao Tong University&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+            <sup>3</sup>KAUST<br>
+            <sup>4</sup>Nankai University&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+            <sup>5</sup>Mohamed bin Zayed University of Artificial Intelligence
+          </div>
+
+          <div class="mt-3">
+            <span class="tag is-medium is-rounded" style="background:#5c3d8f; color:#fff; font-weight:600;">
+              Visual Intelligence 2025
+            </span>
+          </div>
+
+          <!-- Links -->
+          <div class="column has-text-centered mt-5">
+            <div class="publication-links">
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2408.07317" target="_blank"
+                   class="external-link button is-dark is-rounded">
+                  <span class="icon"><i class="ai ai-arxiv"></i></span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/2408.07317" target="_blank"
+                   class="external-link button is-dark is-rounded">
+                  <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://link.springer.com/article/10.1007/s44267-025-00081-2" target="_blank"
+                   class="external-link button is-dark is-rounded">
+                  <span class="icon"><i class="fas fa-book"></i></span>
+                  <span>Journal</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://github.com/Sys-Nexus/DreamConnect" target="_blank"
+                   class="external-link button is-dark is-rounded">
+                  <span class="icon"><i class="fab fa-github"></i></span>
+                  <span>Code</span>
+                </a>
+              </span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TEASER ===================== -->
+<section class="section pt-6 pb-0">
+  <div class="container is-max-desktop">
+    <div class="figure-card">
+      <img src="./DreamConnect/teaser.png" alt="DreamConnect: manipulating brain signals with natural language." style="width:100%">
+      <p class="figure-caption">
+        <b>Overview of DreamConnect.</b> Our framework uses natural language to manipulate visually
+        stimulated brain signals. Given an fMRI signal encoding a visual stimulus and a text
+        instruction, DreamConnect employs a dual-stream diffusion process to progressively translate
+        the neural &ldquo;dreamland&rdquo; into a new visual synthesis that follows the instruction,
+        enabling concept manipulation through direct fMRI signal modification.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ABSTRACT ===================== -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <h2 class="title is-3 section-title">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Recent breakthroughs in understanding the human brain have revealed its impressive
+            ability to efficiently process and interpret human thoughts, opening up the possibility
+            of intervening in brain signals. In this paper, we aim to develop a straightforward
+            framework that uses other modalities, such as natural language, to translate the
+            original &ldquo;dreamland&rdquo;. We present DreamConnect, employing a dual-stream
+            diffusion framework to manipulate visually stimulated brain signals. By integrating an
+            asynchronous diffusion strategy, our framework establishes an effective interface with
+            human &ldquo;dreams&rdquo;, and progressively refines their final image synthesis.
+            Through extensive experiments, we demonstrate the efficacy of our method to accurately
+            direct human brain signals in desired directions, ultimately enabling concept
+            manipulation through direct manipulation of the functional magnetic resonance imaging
+            (fMRI) signals. We hope that this work will motivate the use of brain signals in
+            human&ndash;computer interaction applications.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== METHOD ===================== -->
+<section class="section pt-0">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <h2 class="title is-3 section-title">Method</h2>
+      </div>
+    </div>
+    <div class="figure-card">
+      <img src="./DreamConnect/method.png" alt="DreamConnect dual-stream diffusion architecture." style="width:100%">
+      <p class="figure-caption">
+        <b>Architecture.</b> DreamConnect adopts a dual-stream diffusion framework. One stream
+        processes the fMRI-derived visual signal while the other handles the language instruction.
+        An asynchronous diffusion strategy progressively aligns the two streams, enabling
+        fine-grained manipulation of the brain-decoded imagery according to the text prompt.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== BIBTEX ===================== -->
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title is-3 section-title">BibTeX</h2>
+    <pre class="bibtex"><code>@article{sun2025dreamconnect,
+  title     = {Connecting Dreams with Visual Brainstorming Instruction},
+  author    = {Sun, Yasheng and Li, Bohan and Zhuge, Mingchen and Fan, Deng-Ping
+               and Khan, Salman and Khan, Fahad Shahbaz and Koike, Hideki},
+  journal   = {Visual Intelligence},
+  volume    = {3},
+  pages     = {12},
+  year      = {2025},
+  doi       = {10.1007/s44267-025-00081-2},
+  url       = {https://link.springer.com/article/10.1007/s44267-025-00081-2}
+}</code></pre>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content has-text-centered is-size-7">
+          <p>
+            This page is built with the
+            <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a>,
+            which itself builds on <a href="https://nerfies.github.io" target="_blank">Nerfies</a>.
+            Licensed under a
+            <a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">CC BY-SA 4.0</a> license.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Support</title>
+<style>
+  body{font:17px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;max-width:680px;margin:48px auto;padding:0 20px;color:#1d1d1f;background:#fff}
+  h1{font-size:30px;margin-bottom:4px} h2{font-size:20px;margin-top:36px}
+  .box{background:#f5f5f7;border-radius:12px;padding:18px 20px;margin:20px 0}
+  table{border-collapse:collapse;width:100%;table-layout:fixed} td{padding:8px 0;border-bottom:1px solid #e5e5ea;vertical-align:top;overflow-wrap:anywhere} td:first-child{font-weight:600;width:34%;padding-right:12px}
+  /* Narrow screens: stack the label above its answer instead of squeezing two columns. */
+  @media (max-width:560px){td,td:first-child{display:block;width:auto} td:first-child{border-bottom:0;padding-bottom:0;padding-right:0} td:last-child{padding-top:2px}}
+  @media (prefers-color-scheme:dark){body{background:#000;color:#f5f5f7}.box{background:#1c1c1e}td{border-color:#2c2c2e}}
+</style>
+</head>
+<body>
+<h1>Support</h1>
+<p>For LecturePad, PaperVault, ClearDraft, DriftSound and SubKeeper.</p>
+
+<div class="box"><strong>Contact:</strong> <a href="mailto:yasheng.sun@kaust.edu.sa">yasheng.sun@kaust.edu.sa</a>. Please say which app and which iPhone model you are using. Replies usually within two working days.</div>
+
+<h2>Purchases and subscriptions</h2>
+<table>
+<tr><td>Restore a purchase</td><td>Open the app › Settings › <em>Restore purchases</em>. This checks your Apple ID with the App Store; nothing is stored by us.</td></tr>
+<tr><td>Cancel a subscription</td><td>iPhone Settings › your name › Subscriptions › choose the app › Cancel. Cancelling keeps Pro until the end of the period already paid for.</td></tr>
+<tr><td>Free trial</td><td>Each subscription starts with a free week. Cancel before it ends and you are not charged. Apple sends a reminder before the trial converts.</td></tr>
+<tr><td>Refunds</td><td>Refunds are issued by Apple, not by us: <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a>.</td></tr>
+</table>
+
+<h2>Frequently asked</h2>
+<table>
+<tr><td>Where is my data?</td><td>On your device only. None of these apps has an account or a server. Deleting an app deletes its data, so back up with iCloud or Finder first if you care about it.</td></tr>
+<tr><td>LecturePad says “No offline speech model”</td><td>The app transcribes only on-device. Open iPhone Settings › General › Keyboard › Enable Dictation, then confirm the language's offline model has downloaded. This is not available in the iOS Simulator.</td></tr>
+<tr><td>PaperVault found no text in a PDF</td><td>Scanned PDFs have no text layer; the app runs OCR on them, which takes longer and needs the document to be reasonably legible.</td></tr>
+<tr><td>ClearDraft says repeated-word detection is off</td><td>Apple's part-of-speech model is not present on every device. The app detects this and switches to surface rules rather than guessing; the other six checks still run.</td></tr>
+<tr><td>DriftSound stops when the screen locks</td><td>It should not. Check that Background App Refresh is not restricted for the app, and that no other app has taken over audio.</td></tr>
+<tr><td>SubKeeper reminders do not arrive</td><td>iPhone Settings › Notifications › SubKeeper must be allowed, and <em>Renewal reminders</em> must be on in the app's Settings tab. Reminders fire at the hour you chose there.</td></tr>
+</table>
+
+<h2>Privacy policies</h2>
+<p><a href="lecturepad/privacy">LecturePad</a> · <a href="papervault/privacy">PaperVault</a> · <a href="cleardraft/privacy">ClearDraft</a> · <a href="driftsound/privacy">DriftSound</a> · <a href="subkeeper/privacy">SubKeeper</a></p>
+</body>
+</html>

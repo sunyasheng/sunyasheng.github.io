@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JevGPT: Thinking Fast and Slow in Autonomous Research</title>
+
+<meta name="description" content="JevGPT is a dual-system architecture for autonomous research: GPT plans research and integrates findings, while Jev guides parallel evidence inspection and returns original source passages.">
+<meta name="keywords" content="autonomous research; deep research agents; System One; System Two; evidence inspection; BrowseComp-Plus; NeuCLIRBench; retrieval">
+<meta name="robots" content="index,follow">
+
+<!-- Open Graph / Twitter -->
+<meta property="og:title" content="JevGPT: Thinking Fast and Slow in Autonomous Research">
+<meta property="og:description" content="A dual-system architecture for autonomous research that couples fast evidence processing with deliberative research planning.">
+<meta property="og:image" content="https://sunyasheng.github.io/projects/JevGPT/teaser.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="JevGPT: Thinking Fast and Slow in Autonomous Research">
+<meta name="twitter:image" content="https://sunyasheng.github.io/projects/JevGPT/teaser.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+<style>
+  :root { --ink:#363636; --muted:#5f6368; --accent:#1f6f4a; --two:#2f62a3; --rule:#ebeced; }
+  body { font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; color:var(--ink); }
+  .publication-title { font-weight:800; letter-spacing:-.02em; line-height:1.15; }
+  .publication-title .method { color:var(--accent); }
+  .publication-authors { font-weight:600; line-height:1.9; }
+  .publication-authors a { color:var(--two); }
+  .publication-authors a:hover { text-decoration:underline; }
+  .author-block { white-space:nowrap; }
+  .affiliations { color:var(--muted); font-size:.95rem; line-height:1.7; }
+  .hero.is-light { background:linear-gradient(180deg,#f5f8fb 0%,#ffffff 100%); }
+  .link-block .button { border-radius:999px; font-weight:600; margin:.2rem .1rem; }
+  .link-block .button[disabled] { opacity:.55; cursor:default; }
+  .figure-caption { color:var(--muted); font-size:.92rem; line-height:1.65; margin-top:.9rem; text-align:left; }
+  .section-title { font-weight:700; letter-spacing:-.01em; }
+  .content p { line-height:1.8; text-align:justify; }
+  .key-idea { border-left:4px solid var(--accent); background:#f4f9f6; border-radius:0 8px 8px 0; padding:1rem 1.25rem; }
+  .key-idea p { margin:0; }
+  pre.bibtex { background:#f5f5f5; border-radius:8px; padding:1.1rem 1.25rem; font-size:.86rem; overflow-x:auto; }
+  .figure-card { background:#fff; border:1px solid var(--rule); border-radius:12px; padding:1.25rem; }
+  .figure-card img { border-radius:6px; display:block; margin:0 auto; }
+  .figure-card img.narrow { max-width:520px; width:100%; }
+  .results-table { width:100%; font-size:.86rem; font-variant-numeric:tabular-nums; border-collapse:collapse; }
+  .results-table th, .results-table td { padding:.38rem .55rem; text-align:right; white-space:nowrap; border:none; }
+  .results-table th:nth-child(-n+2), .results-table td:nth-child(-n+2) { text-align:left; }
+  .results-table thead tr.group th { text-align:center; color:var(--muted); font-weight:600; border-bottom:1px solid #d5d7da; }
+  .results-table thead tr.cols th { border-bottom:1.5px solid #363636; font-weight:600; }
+  .results-table thead tr.group th:first-child { border-bottom:none; }
+  .results-table tbody tr.split td { border-top:1px solid #d5d7da; }
+  .results-table tbody tr.ours td { background:#eef7f2; }
+  .results-table tbody tr.ours td:first-child { font-weight:700; color:var(--accent); }
+  .results-table tbody tr:last-child td { border-bottom:1.5px solid #363636; }
+  .results-table .best { font-weight:800; }
+  .results-table .second { text-decoration:underline; text-underline-offset:3px; }
+  .table-scroll { overflow-x:auto; -webkit-overflow-scrolling:touch; }
+  .table-caption { color:var(--muted); font-size:.92rem; line-height:1.65; margin-bottom:.8rem; }
+  footer.footer { background:#fafbfb; }
+  @media screen and (max-width:768px) {
+    .hero-body { padding:2.5rem 1rem; }
+    .section { padding:2.5rem 1rem; }
+    .figure-card { padding:.75rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero is-light">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+
+          <h1 class="title is-2 publication-title">
+            <span class="method">JevGPT</span>: Thinking Fast and Slow<br>in Autonomous Research
+          </h1>
+
+          <div class="is-size-5 publication-authors mt-5">
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=Vrq1yOEAAAAJ" target="_blank">Yasheng Sun</a>,
+            </span>
+            <span class="author-block">Yanning Dai,</span>
+            <span class="author-block">Yimeng Chen,</span>
+            <span class="author-block">Nanbo Li,</span>
+            <span class="author-block">Firas Laakom,</span>
+            <span class="author-block">Yifan Xu,</span>
+            <span class="author-block">Piotr Pi&#281;kos,</span>
+            <span class="author-block">Mateusz Ostaszewski,</span>
+            <span class="author-block">Wenyi Wang,</span>
+            <span class="author-block">Cheng Luo,</span>
+            <span class="author-block">Yuhui Wang,</span>
+            <span class="author-block">
+              <a href="https://people.idsia.ch/~juergen/" target="_blank">J&uuml;rgen Schmidhuber</a>
+            </span>
+          </div>
+
+          <div class="affiliations mt-4">
+            King Abdullah University of Science and Technology (KAUST)
+          </div>
+
+          <!-- Links: the arXiv, PDF and Hugging Face buttons go live once the arXiv ID exists. -->
+          <div class="column has-text-centered mt-5">
+            <div class="publication-links">
+              <span class="link-block">
+                <a class="external-link button is-dark is-rounded" disabled title="Coming soon">
+                  <span class="icon"><i class="ai ai-arxiv"></i></span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a class="external-link button is-dark is-rounded" disabled title="Coming soon">
+                  <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a class="external-link button is-dark is-rounded" disabled title="Coming soon">
+                  <span class="icon">&#129303;</span>
+                  <span>Hugging Face</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a class="external-link button is-dark is-rounded" disabled title="Coming soon">
+                  <span class="icon"><i class="fab fa-github"></i></span>
+                  <span>Code</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="#BibTeX" class="button is-dark is-rounded">
+                  <span class="icon"><i class="fas fa-quote-right"></i></span>
+                  <span>BibTeX</span>
+                </a>
+              </span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TEASER ===================== -->
+<section class="section pt-6 pb-0">
+  <div class="container is-max-desktop">
+    <div class="figure-card">
+      <img src="./JevGPT/teaser.png" alt="JevGPT dual-system architecture: System Two plans searches, sets evidence objectives, integrates findings and produces results; System One checks support, locates passages, scores relevance and adapts reading." style="width:100%">
+      <p class="figure-caption">
+        <b>JevGPT&rsquo;s dual-system architecture for autonomous research.</b>
+        System Two uses GPT to plan searches and integrate findings into answers or rankings.
+        System One uses Jev to guide parallel evidence inspection and return source passages;
+        the dashed loop indicates adaptive reading.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ABSTRACT ===================== -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <h2 class="title is-3 section-title">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Autonomous research agents must acquire and reason over evidence within a limited budget.
+            Yet relevant sources can remain uninspected or unused, leaving a gap between retrieval
+            coverage and the evidence that informs research. The challenge is to align fast local
+            judgments with changing evidence needs and feed their findings back into research
+            decisions. We introduce <b>JevGPT</b>, a dual-system architecture for autonomous research
+            that couples fast evidence processing with deliberative research planning. System Two sets
+            evidence objectives and integrates findings, while System One locates support, assesses
+            relevance, and guides further inspection. Independent source judgments run in parallel;
+            selected original passages inform the next research step. Experiments on fixed-corpus
+            question answering and document ranking show that JevGPT achieves leading task
+            performance, with faster completion and lower cost than comparably effective research
+            agents. Evidence analysis shows broader source inspection and greater coverage of
+            supporting documents in the research loop, highlighting efficient evidence processing as
+            a route to more capable autonomous research.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== METHOD ===================== -->
+<section class="section pt-0">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <h2 class="title is-3 section-title">Method</h2>
+      </div>
+    </div>
+    <div class="content key-idea mb-5">
+      <p>
+        <b>Key observation.</b> Research planning and local evidence judgments require different
+        scopes of information. Planning uses the accumulated investigation, whereas a source judgment
+        can be bounded by an explicit evidence objective. Independent judgments under that objective
+        can run in parallel, while their findings return to the research process to inform the next
+        objective.
+      </p>
+    </div>
+    <div class="figure-card">
+      <img src="./JevGPT/method.png" alt="Overview of JevGPT: a System Two research loop delegates requests to System One readers for evidence localization, relevance assessment and evidence discovery over hybrid BM25 candidates." style="width:100%">
+      <p class="figure-caption">
+        <b>Overview of JevGPT.</b> System Two plans research and integrates evidence; System One
+        guides evidence localization, relevance assessment, and discovery. The readers return
+        original passages with local judgments. Dashed loops adapt reading; the dashed discovery
+        branch supplies additional research leads asynchronously.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== RESULTS ===================== -->
+<section class="section" id="results">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <h2 class="title is-3 section-title">Results</h2>
+      </div>
+    </div>
+    <div class="content has-text-justified">
+      <p>
+        We evaluate on BrowseComp-Plus (fixed-corpus question answering, 830 questions) and
+        NeuCLIRBench (document ranking, 105 topics). JevGPT achieves leading task performance at
+        lower cost than comparably effective research agents, and it also completes research faster.
+      </p>
+    </div>
+
+    <div class="figure-card mb-5">
+      <img class="narrow" src="./JevGPT/cost-quality.png" alt="Quality versus API cost on BrowseComp-Plus and NeuCLIRBench; JevGPT sits at the upper left in both panels.">
+      <p class="figure-caption">
+        <b>Quality and API cost.</b> Stars mark JevGPT; upper left is better. Costs include both
+        systems for JevGPT; the NeuCLIRBench panel shows GPT-based methods.
+      </p>
+    </div>
+
+    <div class="figure-card mb-5">
+      <p class="table-caption">
+        <b>BrowseComp-Plus results on 830 questions.</b> Resources are per-question means; S2/S1
+        denote the two systems&rsquo; API costs. Bold and underlining mark the best and second-best
+        values, including ties.
+      </p>
+      <div class="table-scroll">
+        <table class="results-table">
+          <thead>
+            <tr class="group">
+              <th colspan="2"></th>
+              <th>Performance</th>
+              <th colspan="3">Resources / question</th>
+              <th colspan="2">Cost / question ($)</th>
+            </tr>
+            <tr class="cols">
+              <th>Method</th><th>Retriever</th><th>Accuracy (%) &uarr;</th>
+              <th>Tokens (K) &darr;</th><th>Searches &darr;</th><th>Time (s) &darr;</th>
+              <th>S2 &darr;</th><th>S1 &darr;</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>BCP/ReAct</td><td>BM25</td><td>77.11</td><td>2169</td><td>24.87</td><td>182.1</td><td>3.0798</td><td>&mdash;</td></tr>
+            <tr><td>Pi-Serini</td><td>BM25</td><td>82.05</td><td class="best">266</td><td class="second">14.41</td><td>112.6</td><td class="best">0.4053</td><td>&mdash;</td></tr>
+            <tr><td>Agentica</td><td>BM25</td><td>84.46</td><td class="second">335</td><td>33.88</td><td>111.7</td><td>0.7919</td><td>&mdash;</td></tr>
+            <tr><td>AtlasNav</td><td>BM25 + map</td><td>89.16</td><td>948</td><td>20.54</td><td>144.0</td><td>1.5257</td><td>&mdash;</td></tr>
+            <tr><td>RISE</td><td>BM25</td><td>89.88</td><td>609</td><td>26.08</td><td class="second">111.0</td><td>1.1050</td><td>&mdash;</td></tr>
+            <tr><td>Reason-ColBERT</td><td>ColBERT</td><td class="second">90.00</td><td>931</td><td>16.36</td><td>136.2</td><td>1.6090</td><td>&mdash;</td></tr>
+            <tr class="split ours"><td>JevGPT</td><td>Hybrid BM25</td><td class="best">90.48</td><td>433</td><td class="best">9.13</td><td class="best">91.7</td><td class="second">0.6081</td><td>0.0600</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="figure-card">
+      <p class="table-caption">
+        <b>NeuCLIRBench results on 105 topics.</b> Resources are per-topic means. Bold and
+        underlining mark the top two values; dashes denote inapplicable or unreported resources.
+      </p>
+      <div class="table-scroll">
+        <table class="results-table">
+          <thead>
+            <tr class="group">
+              <th colspan="2"></th>
+              <th colspan="2">Performance</th>
+              <th colspan="3">Resources / topic</th>
+              <th colspan="2">Cost / topic ($)</th>
+            </tr>
+            <tr class="cols">
+              <th>Method</th><th>Retriever</th><th>nDCG@20 &uarr;</th><th>F<sub>1</sub>@20 (%) &uarr;</th>
+              <th>Tokens (K) &darr;</th><th>Searches &darr;</th><th>Time (s) &darr;</th>
+              <th>S2 &darr;</th><th>S1 &darr;</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>BM25</td><td>BM25</td><td>0.3608</td><td>26.13</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+            <tr><td>RM3</td><td>BM25</td><td>0.3622</td><td>26.17</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+            <tr><td>Patapsco</td><td>BM25</td><td>0.3485</td><td>24.80</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+            <tr class="split"><td>Qwen3-Reranker</td><td>Fusion</td><td>0.5138</td><td class="second">35.06</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+            <tr><td>RankGPT</td><td>BM25</td><td>0.4843</td><td>32.48</td><td class="best">76</td><td class="best">1.00</td><td class="second">141.3</td><td class="second">0.6402</td><td>&mdash;</td></tr>
+            <tr class="split"><td>BCP/ReAct</td><td>BM25</td><td>0.4847</td><td>30.60</td><td>853</td><td>15.42</td><td>186.8</td><td>0.9707</td><td>&mdash;</td></tr>
+            <tr><td>Agentica</td><td>BM25</td><td>0.5107</td><td>34.19</td><td>516</td><td>32.85</td><td>211.0</td><td>0.8256</td><td>&mdash;</td></tr>
+            <tr><td>Pi-Serini</td><td>BM25</td><td class="second">0.5240</td><td>35.02</td><td>708</td><td>7.35</td><td>177.0</td><td>0.8515</td><td>&mdash;</td></tr>
+            <tr class="split ours"><td>JevGPT</td><td>Hybrid BM25</td><td class="best">0.5390</td><td class="best">36.10</td><td class="second">158</td><td class="second">2.68</td><td class="best">79.3</td><td class="best">0.5756</td><td>0.0082</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ANALYSIS ===================== -->
+<section class="section pt-0" id="analysis">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <h2 class="title is-3 section-title">Analysis</h2>
+      </div>
+    </div>
+    <div class="columns">
+      <div class="column is-half">
+        <div class="figure-card" style="height:100%">
+          <img src="./JevGPT/bcp-evidence.png" alt="Gold-document recall at candidate pool, inspection, source delivery and final citation for JevGPT, Reason-ColBERT, Pi-Serini and BCP/ReAct." style="width:100%">
+          <p class="figure-caption">
+            <b>Gold-document coverage.</b> Mean per-question recall over 830 BrowseComp-Plus
+            questions, measured separately for each document set under native retrieval settings.
+            JevGPT and Pi-Serini have similar candidate-pool coverage, yet JevGPT achieves higher
+            recall for both inspection and delivery of original text to System Two.
+          </p>
+        </div>
+      </div>
+      <div class="column is-half">
+        <div class="figure-card" style="height:100%">
+          <img src="./JevGPT/model-sweep.png" alt="Accuracy versus total API cost for JevGPT with different System Two models on BrowseComp-Plus." style="width:100%">
+          <p class="figure-caption">
+            <b>Cost and accuracy across System Two models.</b> Each point represents JevGPT with a
+            different System Two model on 415 matched BrowseComp-Plus questions. API cost includes
+            both systems. The dashed line marks the observed Pareto frontier.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== BIBTEX ===================== -->
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title is-3 section-title">BibTeX</h2>
+    <pre class="bibtex"><code>@article{sun2026jevgpt,
+  title   = {{JevGPT}: Thinking Fast and Slow in Autonomous Research},
+  author  = {Sun, Yasheng and Dai, Yanning and Chen, Yimeng and Li, Nanbo
+             and Laakom, Firas and Xu, Yifan and Pi{\k{e}}kos, Piotr
+             and Ostaszewski, Mateusz and Wang, Wenyi and Luo, Cheng
+             and Wang, Yuhui and Schmidhuber, J{\"u}rgen},
+  journal = {arXiv preprint},
+  year    = {2026}
+}</code></pre>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content has-text-centered is-size-7">
+          <p>
+            This page is built with the
+            <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a>,
+            which itself builds on <a href="https://nerfies.github.io" target="_blank">Nerfies</a>.
+            Licensed under a
+            <a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">CC BY-SA 4.0</a> license.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

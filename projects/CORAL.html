@@ -75,9 +75,6 @@
   .more-videos { margin-top:1.5rem; }
   .more-videos summary { color:var(--two); cursor:pointer; font-weight:600; padding:.6rem 0; width:fit-content; }
   .more-videos[open] summary { margin-bottom:1rem; }
-  .poster-layout { display:grid; grid-template-columns:minmax(0,1.5fr) minmax(0,1fr); gap:2rem; align-items:center; }
-  .poster-copy p { line-height:1.75; color:var(--muted); margin-bottom:1rem; }
-  .poster-copy .button { margin:.25rem .25rem .25rem 0; }
   .citation-heading { display:flex; align-items:center; flex-wrap:wrap; gap:1rem; justify-content:space-between; margin-bottom:1rem; }
   .citation-heading h2 { margin-bottom:0 !important; }
   .citation-actions { display:flex; align-items:center; flex-wrap:wrap; gap:.7rem; }
@@ -97,8 +94,6 @@
     .publication-authors { font-size:1.05rem !important; }
     .affiliations { font-size:.88rem; }
     .content p { text-align:left; }
-    .poster-layout { grid-template-columns:1fr; gap:1.25rem; }
-    .poster-copy { text-align:center; }
     .table-scroll { background:linear-gradient(90deg,transparent 92%,#00000006); }
   }
   @media screen and (max-width:600px) {
@@ -135,6 +130,7 @@
           <p class="notes mt-2"><sup>*</sup>Equal contribution &nbsp; · &nbsp; <sup>†</sup>Corresponding authors</p>
           <div class="publication-links mt-5">
             <span class="link-block"><a href="https://arxiv.org/pdf/2607.17412" target="_blank" rel="noopener" class="button is-dark is-rounded"><span class="icon" aria-hidden="true"><i class="fas fa-file-pdf"></i></span><span>Paper</span></a></span>
+            <span class="link-block"><a href="./CORAL/poster.pdf" target="_blank" rel="noopener" class="button is-dark is-rounded"><span class="icon" aria-hidden="true"><i class="fas fa-file-pdf"></i></span><span>Poster</span></a></span>
             <span class="link-block"><a href="https://huggingface.co/papers/2607.17412" target="_blank" rel="noopener" class="button is-dark is-rounded"><span class="icon" aria-hidden="true">&#129303;</span><span>Hugging Face</span></a></span>
             <span class="link-block"><a href="https://github.com/sunyasheng/CORAL" target="_blank" rel="noopener" class="button is-dark is-rounded"><span class="icon" aria-hidden="true"><i class="fab fa-github"></i></span><span>GitHub</span></a></span>
             <span class="link-block"><a href="#BibTeX" class="button is-dark is-rounded"><span class="icon" aria-hidden="true"><i class="fas fa-quote-right"></i></span><span>BibTeX</span></a></span>
@@ -297,22 +293,6 @@
         </figure>
       </div>
     </details>
-  </div>
-</section>
-
-<section class="section" id="poster">
-  <div class="container is-max-desktop">
-    <h2 class="title is-3 section-title has-text-centered">Poster</h2>
-    <div class="figure-card poster-layout">
-      <a href="./CORAL/poster.pdf" target="_blank" rel="noopener" aria-label="Open the CORAL conference poster PDF"><img src="./CORAL/poster-preview.jpg" width="2300" height="1479" loading="lazy" decoding="async" alt="CORAL's NeurIPS 2026 poster, showing motivation, data curation, the two-stage method, docking results, and structural examples."></a>
-      <div class="poster-copy">
-        <h3 class="title is-5">NeurIPS 2026 · Sydney</h3>
-        <p>The conference poster brings together the method, benchmark results, and structural examples in a 140 × 90 cm landscape layout.</p>
-        <p>Figures, poster files, and simulation clips are available in the companion assets repository.</p>
-        <a href="./CORAL/poster.pdf" target="_blank" rel="noopener" class="button is-dark is-rounded">Poster PDF</a>
-        <a href="https://github.com/sunyasheng/CORAL" target="_blank" rel="noopener" class="button is-light is-rounded">GitHub</a>
-      </div>
-    </div>
   </div>
 </section>
 

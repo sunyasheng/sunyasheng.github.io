@@ -67,6 +67,18 @@
   .table-scroll { overflow-x:auto; -webkit-overflow-scrolling:touch; }
   .table-caption { color:var(--muted); font-size:.92rem; line-height:1.65; margin-bottom:.8rem; }
   .section-intro { color:var(--muted); line-height:1.75; max-width:780px; margin:0 auto 1.75rem; text-align:center; }
+  .talk-heading { display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:.5rem 1rem; margin-bottom:1rem; }
+  .talk-heading h2 { margin:0; }
+  .talk-meta, .talk-links { color:var(--muted); font-size:.88rem; line-height:1.6; }
+  .talk-player { position:relative; overflow:hidden; border-radius:12px; background:#0b1320; box-shadow:0 8px 30px #12243612; }
+  .talk-player video { display:block; width:100%; height:auto; aspect-ratio:16/9; }
+  .talk-play { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; width:100%; height:100%; border:0; padding:0; background:transparent; cursor:pointer; }
+  .talk-play[hidden] { display:none; }
+  .talk-play span { display:grid; place-items:center; width:76px; height:76px; padding-left:4px; border-radius:50%; background:#ffffffed; color:#142333; font-size:1.6rem; box-shadow:0 4px 25px #0005; transition:transform .15s ease; }
+  .talk-play:hover span { transform:scale(1.08); }
+  .talk-play:focus-visible { outline-offset:-4px; }
+  .talk-links { display:flex; flex-wrap:wrap; justify-content:space-between; gap:.4rem 1rem; margin-top:.75rem; }
+  @media (prefers-reduced-motion:reduce) { .talk-play span { transition:none; } }
   .video-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1.5rem; }
   .video-card { background:#fff; border:1px solid var(--rule); border-radius:12px; padding:1rem; min-width:0; }
   .video-card video { width:100%; height:auto; aspect-ratio:auto 22/17; object-fit:contain; border-radius:8px; display:block; background:#f5f6f5; }
@@ -131,6 +143,7 @@
           <div class="publication-links mt-5">
             <span class="link-block"><a href="https://arxiv.org/pdf/2607.17412" target="_blank" rel="noopener" class="button is-dark is-rounded"><span class="icon" aria-hidden="true"><i class="fas fa-file-pdf"></i></span><span>Paper</span></a></span>
             <span class="link-block"><a href="./CORAL/poster.pdf" target="_blank" rel="noopener" class="button is-dark is-rounded"><span class="icon" aria-hidden="true"><i class="fas fa-file-pdf"></i></span><span>Poster</span></a></span>
+            <span class="link-block"><a href="#video" class="button is-dark is-rounded"><span class="icon" aria-hidden="true"><i class="fas fa-play"></i></span><span>Video</span></a></span>
             <span class="link-block"><a href="https://huggingface.co/papers/2607.17412" target="_blank" rel="noopener" class="button is-dark is-rounded"><span class="icon" aria-hidden="true">&#129303;</span><span>Hugging Face</span></a></span>
             <span class="link-block"><a href="https://github.com/sunyasheng/CORAL" target="_blank" rel="noopener" class="button is-dark is-rounded"><span class="icon" aria-hidden="true"><i class="fab fa-github"></i></span><span>GitHub</span></a></span>
             <span class="link-block"><a href="#BibTeX" class="button is-dark is-rounded"><span class="icon" aria-hidden="true"><i class="fas fa-quote-right"></i></span><span>BibTeX</span></a></span>
@@ -142,6 +155,26 @@
 </header>
 
 <main id="main-content">
+<section class="section pt-5 pb-0" id="video" aria-labelledby="video-title">
+  <div class="container is-max-desktop">
+    <div class="talk-heading">
+      <h2 class="title is-4 section-title" id="video-title">Paper walkthrough</h2>
+      <p class="talk-meta">5:27 · English · Captioned</p>
+    </div>
+    <div class="talk-player">
+      <video id="paper-video" controls preload="none" playsinline width="1920" height="1080" poster="./CORAL/talk/video-cover.jpg" aria-label="CORAL paper walkthrough with English narration and captions">
+        <source src="./CORAL/talk/CORAL-explainer-3daf7936.mp4" type="video/mp4">
+        <a href="./CORAL/talk/CORAL-explainer-3daf7936.mp4">Download the CORAL paper walkthrough.</a>
+      </video>
+      <button type="button" class="talk-play" id="play-paper-video" aria-label="Play the CORAL paper walkthrough" hidden><span aria-hidden="true">▶</span></button>
+    </div>
+    <div class="talk-links">
+      <span>A short animated introduction to CORAL.</span>
+      <span><a href="./CORAL/talk/CORAL-explainer-3daf7936.mp4" download>Download video</a> · <a href="./CORAL/talk/transcript.txt">Read transcript</a></span>
+    </div>
+  </div>
+</section>
+
 <section class="section pt-5 pb-0" aria-label="Overview">
   <div class="container is-max-desktop">
     <figure class="figure-card">
@@ -327,6 +360,17 @@
 </footer>
 
 <script>
+  const paperVideo = document.getElementById('paper-video');
+  const playPaperVideo = document.getElementById('play-paper-video');
+  playPaperVideo.hidden = false;
+  playPaperVideo.addEventListener('click', async () => {
+    playPaperVideo.hidden = true;
+    try { await paperVideo.play(); }
+    catch { playPaperVideo.hidden = false; }
+  });
+  paperVideo.addEventListener('play', () => { playPaperVideo.hidden = true; });
+  paperVideo.addEventListener('ended', () => { playPaperVideo.hidden = false; });
+
   const copyButton = document.getElementById('copy-citation');
   const citation = document.getElementById('citation');
   const copyStatus = document.getElementById('copy-status');

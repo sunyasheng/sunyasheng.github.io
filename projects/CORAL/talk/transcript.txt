@@ -1,0 +1,38 @@
+CORAL — Paper walkthrough
+English narration · 5:27
+
+Title
+This is CORAL. It learns how small molecules dock onto amyloid fibrils, using cooperative binding rewards.
+
+A fibril and its groove
+In Alzheimer's and Parkinson's disease, proteins clump into amyloid fibrils. These fibrils are built from near-identical protein layers, about 4.8 Å apart. Every layer has the same fold, so its surface features line up into long grooves along the axis. Fibril ligands, such as imaging probes, often bind in these grooves. In the cooperative binding mode studied here, the copies repeat layer by layer, stacked like coins.
+
+Two conditions at once
+So a good pose must satisfy two conditions at once. Locally, each copy must fit the groove walls. Along the axis, each copy must repeat its neighbour one layer up, so that the copies stack. Docking one ligand at a time can fit each copy locally, yet the copies fail to line up. And data are scarce: resolved fibril–ligand structures are rare, and one protein can form several fibril polymorphs, each with its own groove.
+
+CORAL in one picture
+CORAL starts from a structure model pretrained on general protein–ligand docking. Then it trains in two stages. A geometric warm-up teaches periodic stacking from curated synthetic poses. Then online reinforcement learning tightens the contacts with a cooperative binding reward.
+
+Synthetic warm-up poses
+Because real complexes are rare, the warm-up poses are built synthetically. The pipeline finds pockets along the grooves and generates candidate ligands for each pocket. Each candidate is copied along the fibril axis, and arrangements that clash are discarded. An LLM-based agent, chemistry checks and expert review screen the survivors.
+
+Joint prediction with fibril priors
+The model is an AlphaFold 3-style Pairformer–Diffusion network. Its inputs are several copies of the protein sequence and several copies of the ligand graph. Two fibril priors enter the pair representation. Residue distances from the reference fibril carry the 4.8 Å repeat. A pocket prior marks where the ligands should bind. The diffusion module then turns noise into the whole complex: all chains and all ligand copies, generated jointly.
+
+The cooperative binding reward
+What makes a pose good? CORAL scores it with an effective binding energy. The first term is the AutoDock Vina protein–ligand affinity. The second term is the MMFF94 stacking energy between a ligand and its neighbouring copies. This gas-phase energy is far larger, so the paper attenuates it by 0.005 to put it on the same solution-phase scale as the Vina term. Lower energy means more favourable binding. A symmetry term checks that ligand k, shifted by one layer, lands on ligand k+1. The reward penalises the RMSD between them.
+
+Online RL with DiffusionNFT
+CORAL optimises this reward online, with DiffusionNFT. For each complex, the model samples a group of 24 poses. Rewards are rescaled within the group: the best pose gets a weight near 1, the worst near 0. From the old and the current model, DiffusionNFT builds two velocities. v+ leans toward the current model. v− leans away from it. High-reward samples pull v+ toward their target. Low-reward samples pull v−. So the model moves toward good poses and away from bad ones. A regulariser keeps it close to the frozen warm-up model, so the stacking geometry is not lost.
+
+Docking accuracy
+CORAL is tested on 18 cryo-EM complexes and 57 synthetic pairs with expert-validated reference poses. A hit means the best predicted pose lands within 5 Å RMSD of the reference. The best of seven baselines hits 5.6% and 3.5%. CORAL hits 50.0% and 68.4%.
+
+Predicted poses
+Here is one cryo-EM target from the paper, seen along the fibril axis and from an oblique angle. The reference ligands are overlaid on every prediction. On this target, the baseline poses drift from the groove, or lie against the fibril surface. CORAL recovers the periodic stack across neighbouring chains.
+
+What each part contributes
+Which parts matter? The ablations all point one way. The warm-up supplies the stacking geometry, and cooperative RL improves the energetic criterion. In the paper's comparison, the full recipe is best on both.
+
+Limits and summary
+CORAL still fails in instructive ways: it can fold a ligand back on itself, or rotate it sideways inside the right site. The experimental test set is small, the synthetic references are not experimental structures, and the reward is an energy proxy. Predicted poses still need experimental validation. In short: CORAL builds fibril periodicity into a co-folding model, learns stacking geometry in a warm-up, and refines energetics with a cooperative reward. Thanks for watching.

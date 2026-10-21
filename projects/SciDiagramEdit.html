@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SciDiagramEdit: Learning to Edit Scientific Diagrams from Paper Revisions</title>
+
+<meta name="description" content="SciDiagramEdit is a benchmark and skill-evolution framework that learns to edit scientific diagrams from natural paper revisions, operating on the figure's editable vector source.">
+<meta name="keywords" content="scientific figures; diagram editing; SVG; vector graphics; agents; skill evolution; benchmark; arXiv revisions">
+<meta name="robots" content="index,follow">
+
+<!-- Open Graph / Twitter -->
+<meta property="og:title" content="SciDiagramEdit: Learning to Edit Scientific Diagrams from Paper Revisions">
+<meta property="og:description" content="A benchmark and skill-evolution framework that learns to edit scientific diagrams from natural paper revisions.">
+<meta property="og:image" content="https://sunyasheng.github.io/projects/SciDiagramEdit/teaser.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="SciDiagramEdit: Learning to Edit Scientific Diagrams from Paper Revisions">
+<meta name="twitter:image" content="https://sunyasheng.github.io/projects/SciDiagramEdit/teaser.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+<style>
+  :root { --ink:#363636; --muted:#5f6368; --accent:#1d7a74; }
+  body { font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; color:var(--ink); }
+  .publication-title { font-weight:800; letter-spacing:-.02em; line-height:1.15; }
+  .publication-authors { font-weight:600; }
+  .publication-authors a { color:var(--accent); }
+  .publication-authors a:hover { text-decoration:underline; }
+  .author-block { white-space:nowrap; }
+  .affiliations { color:var(--muted); font-size:.95rem; line-height:1.7; }
+  .notes { color:var(--muted); font-size:.85rem; }
+  .hero.is-light { background:linear-gradient(180deg,#f3f9f8 0%,#ffffff 100%); }
+  .link-block .button { border-radius:999px; font-weight:600; margin:.2rem .1rem; }
+  .figure-caption { color:var(--muted); font-size:.92rem; line-height:1.65; margin-top:.9rem; text-align:left; }
+  .section-title { font-weight:700; letter-spacing:-.01em; }
+  .content p { line-height:1.8; text-align:justify; }
+  pre.bibtex, pre.snippet { background:#f5f5f5; border-radius:8px; padding:1.1rem 1.25rem; font-size:.86rem; overflow-x:auto; }
+  .figure-card { background:#fff; border:1px solid #ebeced; border-radius:12px; padding:1.25rem; }
+  .figure-card img { border-radius:6px; }
+  .content ul.task-files { margin-top:.5rem; }
+  footer.footer { background:#fafbfb; }
+</style>
+</head>
+<body>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero is-light">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+
+          <h1 class="title is-2 publication-title">
+            SciDiagramEdit: Learning to Edit<br>Scientific Diagrams from Paper Revisions
+          </h1>
+
+          <div class="is-size-5 publication-authors mt-5">
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=Vrq1yOEAAAAJ" target="_blank" rel="noopener">Yasheng Sun</a><sup>1</sup>,
+            </span>
+            <span class="author-block">Zezi Zeng<sup>2</sup>,</span>
+            <span class="author-block">
+              <a href="https://www.microsoft.com/en-us/research/people/yifanyang/" target="_blank" rel="noopener">Yifan Yang</a><sup>2&dagger;</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://www.microsoft.com/en-us/research/people/cluo/" target="_blank" rel="noopener">Chong Luo</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=79ODhuQAAAAJ" target="_blank" rel="noopener">Wenyi Wang</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://liuziwei7.github.io/" target="_blank" rel="noopener">Ziwei Liu</a><sup>3</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://people.idsia.ch/~juergen/" target="_blank" rel="noopener">J&uuml;rgen Schmidhuber</a><sup>1</sup>
+            </span>
+          </div>
+
+          <div class="affiliations mt-4">
+            <sup>1</sup>King Abdullah University of Science and Technology&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+            <sup>2</sup>Microsoft Research<br>
+            <sup>3</sup>Nanyang Technological University
+          </div>
+          <div class="notes mt-2"><sup>&dagger;</sup>Corresponding author</div>
+
+          <!-- Links -->
+          <div class="column has-text-centered mt-5">
+            <div class="publication-links">
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2607.15272" target="_blank" rel="noopener"
+                   class="external-link button is-dark is-rounded">
+                  <span class="icon"><i class="ai ai-arxiv"></i></span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/2607.15272" target="_blank" rel="noopener"
+                   class="external-link button is-dark is-rounded">
+                  <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://huggingface.co/datasets/yashengsun/SciDiagramRevision" target="_blank" rel="noopener"
+                   class="external-link button is-dark is-rounded">
+                  <span class="icon"><i class="fas fa-database"></i></span>
+                  <span>Dataset</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://huggingface.co/papers/2607.15272" target="_blank" rel="noopener"
+                   class="external-link button is-dark is-rounded">
+                  <span class="icon">&#129303;</span>
+                  <span>Hugging Face</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://github.com/sunyasheng/SciDiagramEdit" target="_blank" rel="noopener"
+                   class="external-link button is-dark is-rounded">
+                  <span class="icon"><i class="fab fa-github"></i></span>
+                  <span>GitHub</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="#BibTeX" class="button is-dark is-rounded">
+                  <span class="icon"><i class="fas fa-quote-right"></i></span>
+                  <span>BibTeX</span>
+                </a>
+              </span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TEASER ===================== -->
+<section class="section pt-6 pb-0">
+  <div class="container is-max-desktop">
+    <div class="figure-card">
+      <img src="./SciDiagramEdit/teaser.png" alt="Overview of SciDiagramEdit: a human revision repository, agentic learning via skill evolution, and success rate over evolution iterations." style="width:100%">
+      <p class="figure-caption">
+        <b>Overview.</b> <i>Left:</i> the Human Revision Repository, before/after figure pairs mined
+        from arXiv paper revisions. Each pair encodes an edit that the original authors made while they
+        refined the manuscript. <i>Middle:</i> Agentic Learning via Skill Evolution. An SVG-editing agent
+        edits the source figure, and its execution traces are distilled into an evolving skill
+        specification that drives future edits. <i>Right:</i> success rate over evolution iterations on a
+        held-out validation split. The best-so-far skill snapshot rises monotonically, and the callouts
+        show representative learned skill rules.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ABSTRACT ===================== -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <h2 class="title is-3 section-title">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Editing the figures in a research paper is a routine and time-consuming part of everyday
+            research practice: authors relabel components, rearrange panels, and restyle visuals as they
+            revise their manuscripts. Automating this editing workflow under a natural-language
+            instruction, however, is challenging, because a scientific figure is a dense infographic in
+            which heterogeneous visual elements such as schematics, plots, photos, captions, and arrows are
+            composed under a tight visual grammar to advance a specific argument. To address this, we
+            present <b>SciDiagramEdit</b>, a benchmark and skill-evolution framework that learns from
+            natural paper revisions and operates on the figure's editable vector source, where users can
+            inspect and co-edit individual primitives alongside the agent. Our benchmark mines
+            before/after figure pairs from arXiv version histories, each grounded in the authors' own
+            revision intent. To accommodate the diversity of editing instructions, we adopt
+            <i>agentic learning via skill evolution</i>: an agentic proposer continually refines the
+            agent's skill specification from execution traces over multiple epochs. Experiments show that
+            the agent learns meaningful editing skills from paper revisions and substantially improves
+            edit quality over strong single-pass baselines.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== METHOD ===================== -->
+<section class="section pt-0">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <h2 class="title is-3 section-title">Method</h2>
+      </div>
+    </div>
+    <div class="figure-card">
+      <img src="./SciDiagramEdit/method.png" alt="The SciDiagramEdit training loop with Editor, Judge and Coach." style="width:100%">
+      <p class="figure-caption">
+        <b>Training loop.</b> Given an input figure and a natural-language editing instruction, the
+        <b>Editor</b> uses the current skill specification to produce an edited figure and an execution
+        trace. The <b>Judge</b> scores the output on two axes: an aesthetic preference from a pairwise
+        comparison against the author's revision, and a semantic faithfulness score from a per-sample
+        multiple-choice checklist. The <b>Coach</b> reads the trace, the scores, and the author's revision
+        as a demonstration, and emits a patch that updates the skill specification. The loop iterates over
+        training minibatches with validation gating.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== BENCHMARK ===================== -->
+<section class="section pt-0">
+  <div class="container is-max-desktop content">
+    <h2 class="title is-3 section-title has-text-centered">Benchmark Data</h2>
+    <p>
+      <a href="https://huggingface.co/datasets/yashengsun/SciDiagramRevision" target="_blank" rel="noopener">SciDiagramRevision</a>
+      holds 375 editing tasks in its test split. Each task pairs a figure as it appeared in one version of
+      an arXiv paper with the same figure after the authors revised it. A task contains the editable SVG
+      source before the revision, renders before and after, a natural-language instruction that describes
+      the change, and a checklist for grading an attempted edit.
+    </p>
+    <pre class="snippet"><code>from datasets import load_dataset
+
+ds = load_dataset("yashengsun/SciDiagramRevision", split="test")
+row = ds[0]
+row["instruction"], row["input_svg"], row["checklist"]</code></pre>
+    <p class="notes">
+      The figures come from arXiv submissions and remain under the licence of each source paper.
+    </p>
+  </div>
+</section>
+
+<!-- ===================== BIBTEX ===================== -->
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title is-3 section-title">BibTeX</h2>
+    <pre class="bibtex"><code>@article{sun2026scidiagramedit,
+  title   = {SciDiagramEdit: Learning to Edit Scientific Diagrams from Paper Revisions},
+  author  = {Sun, Yasheng and Zeng, Zezi and Yang, Yifan and Luo, Chong and
+             Wang, Wenyi and Liu, Ziwei and Schmidhuber, J\"urgen},
+  journal = {arXiv preprint arXiv:2607.15272},
+  year    = {2026},
+  url     = {https://arxiv.org/abs/2607.15272}
+}</code></pre>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content has-text-centered is-size-7">
+          <p>
+            This page is built with the
+            <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank" rel="noopener">Academic Project Page Template</a>,
+            which itself builds on <a href="https://nerfies.github.io" target="_blank" rel="noopener">Nerfies</a>.
+            Licensed under a
+            <a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a> license.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

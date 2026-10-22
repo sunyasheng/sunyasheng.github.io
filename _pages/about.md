@@ -165,6 +165,7 @@ IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) 2021.
 
 
 # 🎖 Honors and Awards
+- *2025.01* . IEEE Access Best Video Award 2024 (Part 1), Promotional Prize, for [AVI-Talking](https://sunyasheng.github.io/projects/AVI-Talking).
 - *2017.02* . Outstanding Winner (1/8085) of MCM/ICM competition held by [American Consortium for Mathematics and Its Application (COMAP)](https://www.comap.com/contests/mcm-icm). A nice collaboration with [Teng Xue](https://schortenger.github.io/) and Zhu Taihang!
 - *2015.07* . Principal's Special Award -- Qiushi Award (Top 1%).
 - *2014.12* . National Scholoarship (Top 5%).

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AVI-Talking: Learning Audio-Visual Instructions for Expressive 3D Talking Face Generation</title>
+
+<meta name="description" content="AVI-Talking is an Audio-Visual Instruction system for expressive 3D talking face generation: LLMs turn speech into visual instructions, and a diffusion-based network executes them.">
+<meta name="keywords" content="talking face generation; 3D facial animation; audio-driven; large language models; diffusion; instruction following">
+<meta name="robots" content="index,follow">
+
+<!-- Open Graph / Twitter -->
+<meta property="og:title" content="AVI-Talking: Learning Audio-Visual Instructions for Expressive 3D Talking Face Generation">
+<meta property="og:description" content="LLM-generated audio-visual instructions guide expressive 3D talking face synthesis. IEEE Access 2024.">
+<meta property="og:image" content="https://sunyasheng.github.io/projects/AVI-Talking/method.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AVI-Talking: Learning Audio-Visual Instructions for Expressive 3D Talking Face Generation">
+<meta name="twitter:image" content="https://sunyasheng.github.io/projects/AVI-Talking/method.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+<style>
+  :root { --ink:#363636; --muted:#5f6368; --accent:#b5562a; }
+  body { font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; color:var(--ink); }
+  .publication-title { font-weight:800; letter-spacing:-.02em; line-height:1.15; }
+  .publication-authors { font-weight:600; }
+  .publication-authors a { color:var(--accent); }
+  .publication-authors a:hover { text-decoration:underline; }
+  .author-block { white-space:nowrap; }
+  .affiliations { color:var(--muted); font-size:.95rem; line-height:1.7; }
+  .hero.is-light { background:linear-gradient(180deg,#fcf6f2 0%,#ffffff 100%); }
+  .link-block .button { border-radius:999px; font-weight:600; margin:.2rem .1rem; }
+  .figure-caption { color:var(--muted); font-size:.92rem; line-height:1.65; margin-top:.9rem; text-align:left; }
+  .section-title { font-weight:700; letter-spacing:-.01em; }
+  .content p { line-height:1.8; text-align:justify; }
+  pre.bibtex { background:#f5f5f5; border-radius:8px; padding:1.1rem 1.25rem; font-size:.86rem; overflow-x:auto; }
+  .figure-card { background:#fff; border:1px solid #ebeced; border-radius:12px; padding:1.25rem; }
+  .figure-card img { border-radius:6px; }
+  footer.footer { background:#fafbfb; }
+</style>
+</head>
+<body>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero is-light">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+
+          <h1 class="title is-2 publication-title">
+            AVI-Talking: Learning Audio-Visual Instructions<br>for Expressive 3D Talking Face Generation
+          </h1>
+
+          <div class="is-size-5 publication-authors mt-5">
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=Vrq1yOEAAAAJ" target="_blank" rel="noopener">Yasheng Sun</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=1Ae0CMgAAAAJ" target="_blank" rel="noopener">Wenqing Chu</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://hangz-nju-cuhk.github.io/" target="_blank" rel="noopener">Hang Zhou</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=2Pedf3EAAAAJ" target="_blank" rel="noopener">Kaisiyuan Wang</a><sup>3</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://www.vogue.cs.titech.ac.jp/koike" target="_blank" rel="noopener">Hideki Koike</a><sup>1</sup>
+            </span>
+          </div>
+
+          <div class="affiliations mt-4">
+            <sup>1</sup>Tokyo Institute of Technology&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+            <sup>2</sup>Baidu Inc.&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+            <sup>3</sup>The University of Sydney
+          </div>
+
+          <div class="mt-3">
+            <span class="tag is-medium is-rounded" style="background:#b5562a; color:#fff; font-weight:600;">
+              IEEE Access 2024
+            </span>
+          </div>
+
+          <!-- Links -->
+          <div class="column has-text-centered mt-5">
+            <div class="publication-links">
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2402.16124" target="_blank" rel="noopener"
+                   class="external-link button is-dark is-rounded">
+                  <span class="icon"><i class="ai ai-arxiv"></i></span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/2402.16124" target="_blank" rel="noopener"
+                   class="external-link button is-dark is-rounded">
+                  <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://doi.org/10.1109/ACCESS.2024.3390182" target="_blank" rel="noopener"
+                   class="external-link button is-dark is-rounded">
+                  <span class="icon"><i class="fas fa-book"></i></span>
+                  <span>Journal</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://huggingface.co/papers/2402.16124" target="_blank" rel="noopener"
+                   class="external-link button is-dark is-rounded">
+                  <span class="icon">&#129303;</span>
+                  <span>Hugging Face</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://github.com/sunyasheng/AVI-Talking" target="_blank" rel="noopener"
+                   class="external-link button is-dark is-rounded">
+                  <span class="icon"><i class="fab fa-github"></i></span>
+                  <span>Code</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="#BibTeX" class="button is-dark is-rounded">
+                  <span class="icon"><i class="fas fa-quote-right"></i></span>
+                  <span>BibTeX</span>
+                </a>
+              </span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TEASER ===================== -->
+<section class="section pt-6 pb-0">
+  <div class="container is-max-desktop">
+    <div class="figure-card">
+      <img src="./AVI-Talking/teaser.png" alt="Previous methods map speech directly to facial motion, while AVI-Talking first generates an audio-visual instruction and then synthesizes the talking face." style="width:100%">
+      <p class="figure-caption">
+        <b>Overview.</b> Previous approaches learn facial motion directly from the speaker's speech.
+        AVI-Talking adds an audio-visual instruction module, built on LLMs, that describes the expressive
+        facial details implied by the speech and instructs the talking face synthesis network.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ABSTRACT ===================== -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <h2 class="title is-3 section-title">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            While considerable progress has been made in achieving accurate lip synchronization for 3D
+            speech-driven talking face generation, the task of incorporating expressive facial detail
+            synthesis aligned with the speaker's speaking status remains challenging. Our goal is to
+            <i>directly leverage the inherent style information conveyed by human speech for generating an
+            expressive talking face</i> that aligns with the speaking status. In this paper, we propose
+            <b>AVI-Talking</b>, an <b>A</b>udio-<b>V</b>isual <b>I</b>nstruction system for expressive
+            <b>Talking</b> face generation. This system harnesses the robust contextual reasoning and
+            hallucination capability offered by Large Language Models (LLMs) to instruct the realistic
+            synthesis of 3D talking faces. Instead of directly learning facial movements from human speech,
+            our two-stage strategy involves the LLMs first comprehending audio information and generating
+            instructions implying expressive facial details seamlessly corresponding to the speech.
+            Subsequently, a diffusion-based generative network executes these instructions. This two-stage
+            process, coupled with the incorporation of LLMs, enhances model interpretability and provides
+            users with flexibility to comprehend instructions and specify desired operations or
+            modifications. Extensive experiments showcase the effectiveness of our approach in producing
+            vivid talking faces with expressive facial movements and consistent emotional status.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== METHOD ===================== -->
+<section class="section pt-0">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <h2 class="title is-3 section-title">Method</h2>
+      </div>
+    </div>
+    <div class="figure-card">
+      <img src="./AVI-Talking/method.png" alt="AVI-Talking pipeline: audio-visual instruction via LLMs, and the talking face instruction system." style="width:100%">
+      <p class="figure-caption">
+        <b>Pipeline.</b> <i>Left:</i> a Q-Former aligns HuBERT speech features with visual instructions and
+        prompts LLaMA-7B, which proposes a visual instruction that describes plausible facial details.
+        <i>Right:</i> the talking face instruction system receives the instruction and the audio clip
+        separately. The speech content space drives lip movements, and a diffusion prior in the content
+        irrelevant space maps the instruction to an expressive style. The system outputs a time series of
+        3D FLAME parameters.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== BIBTEX ===================== -->
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title is-3 section-title">BibTeX</h2>
+    <pre class="bibtex"><code>@article{sun2024avi,
+  title   = {AVI-Talking: Learning Audio-Visual Instructions for Expressive 3D Talking Face Generation},
+  author  = {Sun, Yasheng and Chu, Wenqing and Zhou, Hang and Wang, Kaisiyuan and Koike, Hideki},
+  journal = {IEEE Access},
+  volume  = {12},
+  pages   = {57288--57301},
+  year    = {2024},
+  doi     = {10.1109/ACCESS.2024.3390182}
+}</code></pre>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content has-text-centered is-size-7">
+          <p>
+            This page is built with the
+            <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank" rel="noopener">Academic Project Page Template</a>,
+            which itself builds on <a href="https://nerfies.github.io" target="_blank" rel="noopener">Nerfies</a>.
+            Licensed under a
+            <a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a> license.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
